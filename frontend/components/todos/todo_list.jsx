@@ -1,9 +1,12 @@
 import React from 'react';
+import TodoListItem from '../todo_list/todo_list_item';
 
-const TodoList = () => {
+const TodoList = ({ todos }) => {
     return (
-        <h3>Todo List goes here!</h3>
+        todos.map((todo, idx) => (
+            <TodoListItem key={idx} title={todo.title}/>
+        ))
     )
 }
-// module.exports = () => <h3>Todo List goes here!</h3>;
+
 export default TodoList;
