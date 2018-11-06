@@ -12,6 +12,7 @@ const TodoList = (props) => {
                 title={todo.title}
                 todo={todo}
                 removeTodo={props.removeTodo}
+                receiveTodo={props.receiveTodo}
             />
             ))}
         </div>
