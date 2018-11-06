@@ -4,12 +4,13 @@ import React from 'react';
 class TodoListItem extends React.Component {
 
     render() {
-        console.log("inside TodoListItem", this.props);
         return (
             <div>
                 <li>
-                    {this.props.title}
-                    <button onClick={this.props.removeTodo}>Delete Todo</button>
+                {this.props.title}
+                    <button onClick={() => this.props.removeTodo(this.props.todo)}>
+                    Delete Todo
+                </button>
                 </li>
             </div>
         )

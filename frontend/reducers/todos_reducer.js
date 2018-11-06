@@ -4,14 +4,20 @@ import { merge } from 'lodash';
 const initialState = {
     1: {
         id: 1,
-        title: 'wash car',
-        body: 'with soap',
+        title: 'wash bike',
+        body: 'with towel only',
         done: false
     },
     2: {
         id: 2,
-        title: 'wash dog',
-        body: 'with shampoo',
+        title: 'do some coding',
+        body: 'at least 4 hours',
+        done: true
+    },
+    3: {
+        id: 3,
+        title: 'workout',
+        body: 'include running',
         done: true
     },
 };
