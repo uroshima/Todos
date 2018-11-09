@@ -1,12 +1,13 @@
 import React from 'react';
-// import { removeTodo } from '../../actions/todo_actions';
+import TodoDetailViewContainer from './todo_detail_view_container';
 
 class TodoListItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             done: this.props.todo.done,
-            output: "Done" 
+            output: "Done",
+            detail: false 
         }
     }
 
@@ -17,13 +18,21 @@ class TodoListItem extends React.Component {
         this.setState({done: newDone, output: newOutput});
     }
 
+    showDetail() {
+        let newDetail = !this.state.detail;
+        this.setState({detail: newDetail});
+    }
+
     render() {
+        let details;
+        if (this.state.detail) {
+            details = <TodoDetailViewContainer todo={this.props.todo} />;
+        } 
+       
         return <div>
             <li>
-              {this.props.title}
-              <button onClick={() => this.props.removeTodo(this.props.todo)}>
-                Delete Todo
-              </button>
+              {details}
+                <button onClick={() => this.showDetail()}>{this.props.title}</button>
               <button onClick={() => this.updateTodo()}>
                 {this.state.output}
               </button>
