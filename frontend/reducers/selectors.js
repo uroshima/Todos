@@ -10,11 +10,11 @@ export const allTodos = state => {
 
 
 export const stepsByTodoId = (state, todo_id) => {
-         let allSteps = [];
-         Object.keys(state.steps).map(key => {
-           if (state.steps.todo_id === todo_id) {
-               allSteps.push(state.steps[key]);
-           }
-         });
-         return allSteps;
-       };
+    let allSteps = [];
+    Object.keys(state.steps).map(key => {
+    if (state.steps.todo_id === todo_id) {
+        allSteps.push(state.steps[key]);
+    }
+    });
+    return allSteps;
+};

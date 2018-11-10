@@ -33,6 +33,7 @@ const stepsReducer = (state = initialState, action) => {
             const newStep = { [action.step.id]: action.step };
             return merge({}, state, newStep);
         case REMOVE_STEP:
+            console.log("inside steps_reducer");
             newState = merge({}, state);
             delete newState[action.step.id];
             return newState;
