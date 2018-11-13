@@ -1,20 +1,20 @@
 import React from 'react';
-import StepListItem from './step_list_item';
+import StepListItemContainer from './step_list_item_container';
 import StepForm from './step_form';
 
-const StepList = props => {
+const StepList = ({ steps, todo_id, receiveStep }) => {
+    const stepItems = steps.map(step => {
+        return <StepListItemContainer
+            key={step.id}
+            step={step} />
+    });
+
     return (
         <div>
-            <StepForm receiveStep={props.receiveStep} />
-            {props.steps.map((step, id) => (
-                <StepListItem 
-                key={id}
-                title={step.title}
-                step={step}
-                removeStep={props.removeStep}
-                receiveStep={props.receiveStep}
-                />
-                ))}
+            <ul>
+                { stepItems }
+            </ul>
+            <StepForm todo_id={todo_id} receiveStep={receiveStep} />
         </div>
     )
 }

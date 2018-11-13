@@ -1,43 +1,51 @@
 import React from 'react';
+import { uniqueId } from "../../util/util";
+
 
 class StepForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             title: '',
-            body: ''
-        }
-        this.update = this.update.bind(this);
+            body: '',
+            done: false,
+            todo_id: this.props.todo_id
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     update(field) {
-        return e => {
-            this.setState({
-                [field]: e.currentTarget.value 
-            });
-        }
-    }
+        return e => (
+            this.setState({[field]: e.target.value })
+        )
+    };
 
     handleSubmit(e) {
         e.preventDefault();
-        const step = Object.assign({}, this.state)
+        const step = Object.assign({}, this.state, { id: uniqueId() })
         this.props.receiveStep(step);
-        this.state = {
+        this.setState({
             title: '',
             body: ''
-        }
+        })
     }
 
     render() {
-        return <div>
+        return (
+        <div>
             <form onSubmit={this.handleSubmit}>
-              <input onChange={this.update("title")} value={this.state.title} placeholder="title" />
-              <input onChange={this.update("body")} value={this.state.body} placeholder="body" />
-              <button>Create Step</button>
+                <label>Title:
+                    <input ref="title" onChange={this.update("title")} value={this.state.title} placeholder="title" />
+                </label>
+                <label>Description:
+                    <input ref="body" onChange={this.update("body")} value={this.state.body} placeholder="body" />
+                </label>
+                <button>Create Step</button>
             </form>
-          </div>;
+        </div>
+        )
     }
 }
 
 export default StepForm;
+

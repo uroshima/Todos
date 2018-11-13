@@ -1,43 +1,51 @@
 import React from 'react';
 import TodoDetailViewContainer from './todo_detail_view_container';
+import { merge } from "lodash";
 
 class TodoListItem extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            done: this.props.todo.done,
-            output: "Done",
-            detail: false 
-        }
+        this.state = { detail: false };
+        this.toggleDetail = this.toggleDetail.bind(this);
+        this.toggleTodo = this.toggleTodo.bind(this);
     }
 
-    updateTodo() {
-        let newDone = !this.state.done;
-        let newOutput = this.state.output;
-        newOutput === "Done" ? newOutput = "Undo" : newOutput = "Done";
-        this.setState({done: newDone, output: newOutput});
+    toggleDetail(e) {
+        e.preventDefault();
+        this.setState({ detail: !this.state.detail });
     }
 
-    showDetail() {
-        let newDetail = !this.state.detail;
-        this.setState({detail: newDetail});
+    toggleTodo(e) {
+        e.preventDefault();
+        const toggledTodo = merge(
+            {},
+            this.props.todo,
+            { done: !this.props.todo.done }
+        );
+
+        this.props.receiveTodo(toggledTodo);
     }
 
     render() {
-        let details;
+        const { todo, updateTodo } = this.props;
+        const { title, done } = todo;
+        let detail;
         if (this.state.detail) {
-            details = <TodoDetailViewContainer todo={this.props.todo} />;
-        } 
-       
-        return <div>
+            detail = <TodoDetailViewContainer todo={todo} />;
+        }
+
+        return (
             <li>
-              {details}
-                <button onClick={() => this.showDetail()}>{this.props.title}</button>
-              <button onClick={() => this.updateTodo()}>
-                {this.state.output}
-              </button>
+                <div>
+                    <h3><a onClick={this.toggleDetail}>{title}</a></h3>
+                    <button
+                        onClick={this.toggleTodo}>
+                        {done ? "Undo" : "Done"}
+                    </button>
+                </div>
+                {detail}
             </li>
-          </div>;
+        );
     }
 }
 

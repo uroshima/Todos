@@ -4,7 +4,8 @@ import { allTodos } from '../../reducers/selectors';
 import { removeTodo } from "../../actions/todo_actions";
 
 const mapStateToProps = state => ({
-    todos: allTodos(state)
+    todos: allTodos(state),
+    state
 });
 
 const mapDispatchToProps = (dispatch) => ({

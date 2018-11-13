@@ -10,17 +10,14 @@ class TodoForm extends React.Component {
             body: '',
             done: false
         };
-        this.update = this.update.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
     update(field) {
-        return e => {
-            this.setState({
-                [field]: e.currentTarget.value
-            });
-        }
+        return e => (
+            this.setState({[field]: e.currentTarget.value})
+        )
     }
 
     handleSubmit(e) {
@@ -37,8 +34,12 @@ class TodoForm extends React.Component {
         return (
                 <div>
                     <form onSubmit={this.handleSubmit}>
-                        <input onChange={this.update('title')} value={this.state.title} placeholder="title" />
-                        <input onChange={this.update('body')} value={this.state.body} placeholder="body" />
+                        <label>Title:
+                            <input onChange={this.update('title')} value={this.state.title} placeholder="title" />
+                        </label>
+                        <label>Body:
+                            <input onChange={this.update('body')} value={this.state.body} placeholder="body" />
+                        </label>
                         <button>Create Todo</button>
                     </form>
                 </div>

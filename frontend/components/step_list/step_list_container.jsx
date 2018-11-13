@@ -9,8 +9,8 @@ const mapStateToProps = (state, { todo_id }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    receiveStep: (step) => dispatch(receiveStep(step)),
-    removeStep: (step) => dispatch(removeStep(step))
+    receiveStep: step => dispatch(receiveStep(step))
+    // removeStep: (step) => dispatch(removeStep(step))
 });
 
 export default connect(
