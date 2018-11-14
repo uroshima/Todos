@@ -5,19 +5,19 @@ const initialState = {
     1: {
         id: 1,
         title: 'wash bike',
-        body: 'with towel only',
+        body: 'by yourself, with towel only',
         done: false
     },
     2: {
         id: 2,
-        title: 'do some coding',
+        title: 'keep coding',
         body: 'at least 4 hours',
         done: true
     },
     3: {
         id: 3,
         title: 'workout',
-        body: 'include running',
+        body: 'outdoor workout + running',
         done: true
     },
 };

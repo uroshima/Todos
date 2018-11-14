@@ -8,15 +8,15 @@ import { merge } from "lodash";
 const initialState = {
     1: { 
         id: 1,
-        title: 'walk to store',
+        title: 'pour some hot water in a bucket',
         done: false,
         todo_id: 1
     },
     2: {
         id: 2,
-        title: 'buy soap',
+        title: 'create a git repo first',
         done: false,
-        todo_id: 1
+        todo_id: 2
     }
 };
 
@@ -33,7 +33,6 @@ const stepsReducer = (state = initialState, action) => {
             const newStep = { [action.step.id]: action.step };
             return merge({}, state, newStep);
         case REMOVE_STEP:
-            console.log("inside steps_reducer");
             newState = merge({}, state);
             delete newState[action.step.id];
             return newState;
